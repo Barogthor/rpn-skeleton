@@ -1,5 +1,9 @@
 package rpn;
 
+import rpn.Exceptions.UnsufficientArgumentException;
+import rpn.Exceptions.UnsupportedExpressionException;
+import rpn.Expression.Interpreter;
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -8,11 +12,16 @@ public class CLI {
         String expression = Stream.of(args).collect(Collectors.joining(" "));
 
         System.out.println("About to evaluate '" + expression + "'");
-        long result = evaluate(expression);
+        long result = 0;
+        try {
+            result = evaluate(expression);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            e.printStackTrace();
+        }
         System.out.println("> " + result);
     }
 
-    static long evaluate(String expression) {
-        return 0;
+    static long evaluate(String expression) throws UnsupportedExpressionException, UnsufficientArgumentException {
+        return Interpreter.evaluate(expression);
     }
 }
