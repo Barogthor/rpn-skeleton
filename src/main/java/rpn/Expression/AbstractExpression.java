@@ -11,6 +11,6 @@ import java.util.ArrayDeque;
 public abstract class AbstractExpression {
     private final static String CLASSNAME = "rpn.Expression.AbstractExpression";
 
-    public abstract void operate(String expression, ArrayDeque<Long> result) throws UnsufficientArgumentException;
+    public abstract void operate(String expression, ArrayDeque<Double> result) throws UnsufficientArgumentException;
 
 }

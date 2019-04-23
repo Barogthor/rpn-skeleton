@@ -13,11 +13,12 @@ public class DivideOperation extends AbstractOperation {
 
 
     @Override
-    public void operate(String expression, ArrayDeque<Long> result) throws UnsufficientArgumentException {
+    public void operate(String expression, ArrayDeque<Double> result) throws UnsufficientArgumentException {
         if(result.size()<2)
             throw new UnsufficientArgumentException();
 
-        result.push( result.pop() / result.pop() );
+        double rightOperand = result.pop(), leftOperand = result.pop();
+        result.push( leftOperand / rightOperand );
 
     }
 }

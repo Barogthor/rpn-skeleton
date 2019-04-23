@@ -11,7 +11,7 @@ public class Number extends AbstractExpression {
 
 
     @Override
-    public void operate(String expression, ArrayDeque<Long> result) {
-        result.push(Long.parseLong(expression));
+    public void operate(String expression, ArrayDeque<Double> result) {
+        result.push(Double.parseDouble(expression));
     }
 }

@@ -17,16 +17,16 @@ import java.util.regex.Pattern;
 public class Interpreter {
     private final static String CLASSNAME = "rpn.Expression.Interpreter";
     private final static HashMap<Pattern,AbstractExpression> choice = new HashMap<Pattern, AbstractExpression>() {{
-        put(Pattern.compile("\\d+"),new Number());
+        put(Pattern.compile("\\d+(\\.\\d+)?"),new Number());
         put(Pattern.compile("\\+"),new PlusOperation());
         put(Pattern.compile("-"),new SubstractOperation());
         put(Pattern.compile("\\*"),new MultiplyOperation());
         put(Pattern.compile("/"),new DivideOperation());
     }};
 
-    public static long evaluate(String expression) throws UnsupportedExpressionException, UnsufficientArgumentException {
+    public static double evaluate(String expression) throws UnsupportedExpressionException, UnsufficientArgumentException {
         ArrayDeque<String> elements = new ArrayDeque<>(Arrays.asList(expression.split(" ")));
-        ArrayDeque<Long> stack = new ArrayDeque<>();
+        ArrayDeque<Double> stack = new ArrayDeque<>();
 
         while(!elements.isEmpty()){
             String element = elements.pop();

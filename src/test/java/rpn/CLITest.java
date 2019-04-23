@@ -1,5 +1,6 @@
 package rpn;
 
+import org.assertj.core.data.Offset;
 import org.junit.Test;
 import rpn.Exceptions.UnsufficientArgumentException;
 import rpn.Exceptions.UnsupportedExpressionException;
@@ -74,6 +75,33 @@ public class CLITest {
 
         } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
             fail(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void shoud_evaluate_divide(){
+        try {
+            assertThat(evaluate("6 3 /")).isEqualTo(2);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void shoud_evaluate_divide_float(){
+        try {
+            assertThat(evaluate("6 4 + 3 /")).isEqualTo(10/3f, Offset.offset(0.00001));
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void shoud_evaluate_divide_float_complex(){
+        try {
+            assertThat(evaluate("5.5 7.3 + 6.4 /")).isEqualTo(2, Offset.offset(0.00001));
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
             e.printStackTrace();
         }
     }
