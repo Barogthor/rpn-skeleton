@@ -9,6 +9,7 @@ import rpn.Expression.Operation.SubstractOperation;
 
 import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @author
@@ -36,9 +37,10 @@ public class Interpreter {
     }
 
     private static AbstractExpression whichExpression(String expression) throws UnsupportedExpressionException {
-        for(Map.Entry<Pattern,AbstractExpression> entry : operations.entrySet())
-            if(entry.getKey().matcher(expression).matches())
-                return entry.getValue();
-        throw new UnsupportedExpressionException(expression);
+        return operations.entrySet().stream()
+                .filter(e -> e.getKey().matcher(expression).matches())
+                .map(Map.Entry::getValue)
+                .findAny()
+                .orElseThrow(() -> new UnsupportedExpressionException(expression));
     }
 }
