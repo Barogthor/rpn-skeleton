@@ -1,4 +1,4 @@
-package rpn.Expression;
+package rpn.Expression.Operation;
 
 import rpn.Exceptions.UnsufficientArgumentException;
 
@@ -9,7 +9,7 @@ import java.util.ArrayDeque;
  * @since
  **/
 public class MultiplyOperation extends AbstractOperation {
-    private final static String CLASSNAME = "rpn.Expression.MultiplyOperation";
+    private final static String CLASSNAME = "rpn.Expression.Operation.MultiplyOperation";
 
 
     @Override

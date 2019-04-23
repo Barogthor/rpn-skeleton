@@ -2,6 +2,10 @@ package rpn.Expression;
 
 import rpn.Exceptions.UnsufficientArgumentException;
 import rpn.Exceptions.UnsupportedExpressionException;
+import rpn.Expression.Operation.DivideOperation;
+import rpn.Expression.Operation.MultiplyOperation;
+import rpn.Expression.Operation.PlusOperation;
+import rpn.Expression.Operation.SubstractOperation;
 
 import java.util.*;
 import java.util.regex.Pattern;

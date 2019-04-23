@@ -71,6 +71,7 @@ public class CLITest {
     public void should_evaluate_multiply_more_complex() {
         try {
             assertThat(evaluate("2 6 4 * *")).isEqualTo(48);
+
         } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
             fail(e.getMessage());
             e.printStackTrace();
