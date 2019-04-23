@@ -16,12 +16,12 @@ import java.util.regex.Pattern;
  **/
 public class Interpreter {
     private final static String CLASSNAME = "rpn.Expression.Interpreter";
-    private final static HashMap<Pattern,AbstractExpression> choice = new HashMap<Pattern, AbstractExpression>() {{
-        put(Pattern.compile("\\d+(\\.\\d+)?"),new Number());
-        put(Pattern.compile("\\+"),new PlusOperation());
-        put(Pattern.compile("-"),new SubstractOperation());
-        put(Pattern.compile("\\*"),new MultiplyOperation());
-        put(Pattern.compile("/"),new DivideOperation());
+    private final static HashMap<Pattern,AbstractExpression> operations = new HashMap<Pattern, AbstractExpression>() {{
+        put(Pattern.compile("\\d+(\\.\\d+)?"), new Number());
+        put(Pattern.compile("\\+"), new PlusOperation());
+        put(Pattern.compile("-"), new SubstractOperation());
+        put(Pattern.compile("\\*"), new MultiplyOperation());
+        put(Pattern.compile("/"), new DivideOperation());
     }};
 
     public static double evaluate(String expression) throws UnsupportedExpressionException, UnsufficientArgumentException {
@@ -30,21 +30,15 @@ public class Interpreter {
 
         while(!elements.isEmpty()){
             String element = elements.pop();
-
             whichExpression(element).operate(element,stack);
-
         }
-
         return stack.pop();
     }
 
     private static AbstractExpression whichExpression(String expression) throws UnsupportedExpressionException {
-        for(Map.Entry<Pattern,AbstractExpression> entry : choice.entrySet())
+        for(Map.Entry<Pattern,AbstractExpression> entry : operations.entrySet())
             if(entry.getKey().matcher(expression).matches())
                 return entry.getValue();
-
-        throw new UnsupportedExpressionException();
-
+        throw new UnsupportedExpressionException(expression);
     }
-
 }

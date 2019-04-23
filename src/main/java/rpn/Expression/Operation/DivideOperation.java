@@ -11,7 +11,6 @@ import java.util.ArrayDeque;
 public class DivideOperation extends AbstractOperation {
     private final static String CLASSNAME = "rpn.Expression.Operation.DivideOperation";
 
-
     @Override
     public void operate(String expression, ArrayDeque<Double> result) throws UnsufficientArgumentException {
         if(result.size()<2)
@@ -19,6 +18,5 @@ public class DivideOperation extends AbstractOperation {
 
         double rightOperand = result.pop(), leftOperand = result.pop();
         result.push( leftOperand / rightOperand );
-
     }
 }

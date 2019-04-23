@@ -11,12 +11,10 @@ import java.util.ArrayDeque;
 public class SubstractOperation extends AbstractOperation {
     private final static String CLASSNAME = "rpn.Expression.Operation.SubstractOperation";
 
-
     @Override
     public void operate(String expression, ArrayDeque<Double> result) throws UnsufficientArgumentException {
         if(result.size()<2)
             throw new UnsufficientArgumentException();
         result.push( -result.pop() + result.pop() );
-
     }
 }
