@@ -5,10 +5,7 @@ import rpn.Exceptions.UnsupportedExpressionException;
 import rpn.Expression.Expression;
 import rpn.Expression.Interpreter;
 import rpn.Expression.Number;
-import rpn.Expression.Operation.DivideOperation;
-import rpn.Expression.Operation.MultiplyOperation;
-import rpn.Expression.Operation.PlusOperation;
-import rpn.Expression.Operation.SubstractOperation;
+import rpn.Expression.Operation.*;
 
 import java.util.HashMap;
 import java.util.regex.Pattern;
@@ -22,6 +19,10 @@ public class CLI {
         put(Pattern.compile("-"), new SubstractOperation());
         put(Pattern.compile("\\*"), new MultiplyOperation());
         put(Pattern.compile("/"), new DivideOperation());
+        put(Pattern.compile("ABS"), new AbsOperation());
+        put(Pattern.compile("SWAP"), new SwapOperation());
+        put(Pattern.compile("DROP"), new DropOperation());
+        put(Pattern.compile("TIME"), new TimeOperation());
     }};
 
     public static final void main(String[] args) {

@@ -111,4 +111,74 @@ public class CLITest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void should_evaluate_positive_number_as_absolute() {
+        try{
+            assertThat(evaluate("17 ABS")).isEqualTo(17);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void should_evaluate_negative_number_as_absolute() {
+        try{
+            assertThat(evaluate("-17 ABS")).isEqualTo(17);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void should_evaluate_complex_negative_result_as_absolute() {
+        try{
+            assertThat(evaluate("2 3 5 + + 19 - ABS")).isEqualTo(9);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void should_evaluate_swapping_substract_operation() {
+        try {
+            assertThat(evaluate("2 9 SWAP -")).isEqualTo(7);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void should_evaluate_swapping_divide_operation() {
+        try{
+            assertThat(evaluate("2 8 SWAP /")).isEqualTo(4);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void should_evaluate_drop_operation() {
+        try{
+            assertThat(evaluate("-2 3 4 DROP +")).isEqualTo(1);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void should_evaluate_time_operation_on_numbers() {
+        try{
+            assertThat(evaluate("1 3 TIME + +")).isEqualTo(3);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }
