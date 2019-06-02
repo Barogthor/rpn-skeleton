@@ -11,7 +11,6 @@ public class TimeOperation implements Operation {
 
         double rightOperand = result.pop(), leftOperand = result.pop();
         for (int i = 0; i < rightOperand; i++) {
-            System.out.println(leftOperand);
             result.push(leftOperand);
         }
     }
