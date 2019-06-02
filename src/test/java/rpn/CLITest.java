@@ -163,19 +163,9 @@ public class CLITest {
     }
 
     @Test
-    public void should_evaluate_drop_absolute_operation() {
+    public void should_evaluate_drop_operation() {
         try{
-            assertThat(evaluate("-2 ABS DROP")).isEqualTo(-2);
-        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
-            fail(e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void should_evaluate_drop_swap_operation() {
-        try{
-            assertThat(evaluate("-2 8 SWAP DROP -")).isEqualTo(-10);
+            assertThat(evaluate("-2 3 4 DROP +")).isEqualTo(1);
         } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
             fail(e.getMessage());
             e.printStackTrace();
