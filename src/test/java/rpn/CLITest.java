@@ -141,4 +141,24 @@ public class CLITest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void should_evaluate_swapping_substract_operation() {
+        try {
+            assertThat(evaluate("2 9 SWAP -")).isEqualTo(7);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void should_evaluate_swapping_divide_operation() {
+        try{
+            assertThat(evaluate("2 8 SWAP /")).isEqualTo(4);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }
