@@ -9,7 +9,6 @@ import java.util.Stack;
  * @since
  **/
 public class SubstractOperation implements Operation {
-    private final static String CLASSNAME = "rpn.Expression.Operation.SubstractOperation";
 
     @Override
     public void operate(Stack<Double> result, String expression) throws UnsufficientArgumentException {

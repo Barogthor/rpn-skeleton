@@ -9,7 +9,6 @@ import java.util.Stack;
  * @since
  **/
 public class MultiplyOperation implements Operation {
-    private final static String CLASSNAME = "rpn.Expression.Operation.MultiplyOperation";
 
     public void operate(Stack<Double> result, String expression) throws UnsufficientArgumentException {
         if(result.size()<2)
