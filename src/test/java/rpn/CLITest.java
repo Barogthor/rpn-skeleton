@@ -181,4 +181,14 @@ public class CLITest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void should_evaluate_time_operation_on_numbers() {
+        try{
+            assertThat(evaluate("1 3 TIME + +")).isEqualTo(3);
+        } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

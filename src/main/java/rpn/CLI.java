@@ -22,7 +22,7 @@ public class CLI {
         put(Pattern.compile("ABS"), new AbsOperation());
         put(Pattern.compile("SWAP"), new SwapOperation());
         put(Pattern.compile("DROP"), new DropOperation());
-
+        put(Pattern.compile("TIME"), new TimeOperation());
     }};
 
     public static final void main(String[] args) {
