@@ -21,6 +21,8 @@ public class CLI {
         put(Pattern.compile("/"), new DivideOperation());
         put(Pattern.compile("ABS"), new AbsOperation());
         put(Pattern.compile("SWAP"), new SwapOperation());
+        put(Pattern.compile("DROP"), new DropOperation());
+
     }};
 
     public static final void main(String[] args) {
