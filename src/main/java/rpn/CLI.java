@@ -2,12 +2,28 @@ package rpn;
 
 import rpn.Exceptions.UnsufficientArgumentException;
 import rpn.Exceptions.UnsupportedExpressionException;
+import rpn.Expression.Expression;
 import rpn.Expression.Interpreter;
+import rpn.Expression.Number;
+import rpn.Expression.Operation.DivideOperation;
+import rpn.Expression.Operation.MultiplyOperation;
+import rpn.Expression.Operation.PlusOperation;
+import rpn.Expression.Operation.SubstractOperation;
 
+import java.util.HashMap;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CLI {
+    private final static HashMap<Pattern, Expression> operations = new HashMap<Pattern, Expression>() {{
+        put(Pattern.compile("-?\\d+(\\.\\d+)?"), new Number());
+        put(Pattern.compile("\\+"), new PlusOperation());
+        put(Pattern.compile("-"), new SubstractOperation());
+        put(Pattern.compile("\\*"), new MultiplyOperation());
+        put(Pattern.compile("/"), new DivideOperation());
+    }};
+
     public static final void main(String[] args) {
         String expression = Stream.of(args).collect(Collectors.joining(" "));
 
@@ -22,6 +38,6 @@ public class CLI {
     }
 
     static double evaluate(String expression) throws UnsupportedExpressionException, UnsufficientArgumentException {
-        return Interpreter.evaluate(expression);
+        return Interpreter.evaluate(expression, operations);
     }
 }

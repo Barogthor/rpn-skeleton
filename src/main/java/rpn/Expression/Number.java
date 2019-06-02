@@ -1,16 +1,15 @@
 package rpn.Expression;
 
-import java.util.ArrayDeque;
+import java.util.Stack;
 
 /**
  * @author
  * @since
  **/
-public class Number extends AbstractExpression {
+public class Number implements Expression {
     private final static String CLASSNAME = "rpn.Expression.Number";
 
-    @Override
-    public void operate(String expression, ArrayDeque<Double> result) {
-        result.push(Double.parseDouble(expression));
+    public void operate(Stack<Double> numbers, String expression) {
+        numbers.push(Double.parseDouble(expression));
     }
 }

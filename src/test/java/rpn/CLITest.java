@@ -17,6 +17,7 @@ public class CLITest {
             assertThat(evaluate("5")).isEqualTo(5);
 
         } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
             e.printStackTrace();
         }
     }
@@ -26,6 +27,7 @@ public class CLITest {
         try{
             assertThat(evaluate("17")).isEqualTo(17);
         } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
             e.printStackTrace();
         }
     }
@@ -35,6 +37,7 @@ public class CLITest {
         try {
             assertThat(evaluate("17 5 +")).isEqualTo(22);
         } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
             e.printStackTrace();
         }
     }
@@ -62,7 +65,7 @@ public class CLITest {
     @Test
     public void should_evaluate_multiply() {
         try {
-            assertThat(evaluate("2 6 *")).isEqualTo(12);
+            assertThat(evaluate("-2 6 *")).isEqualTo(-12);
         } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
             fail(e.getMessage());
             e.printStackTrace();
@@ -82,8 +85,9 @@ public class CLITest {
     @Test
     public void shoud_evaluate_divide(){
         try {
-            assertThat(evaluate("6 3 /")).isEqualTo(2);
+            assertThat(evaluate("-6 3 /")).isEqualTo(-2);
         } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
             e.printStackTrace();
         }
     }
@@ -93,6 +97,7 @@ public class CLITest {
         try {
             assertThat(evaluate("6 4 + 3 /")).isEqualTo(10/3f, Offset.offset(0.00001));
         } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
             e.printStackTrace();
         }
     }
@@ -102,6 +107,7 @@ public class CLITest {
         try {
             assertThat(evaluate("5.5 7.3 + 6.4 /")).isEqualTo(2, Offset.offset(0.00001));
         } catch (UnsupportedExpressionException | UnsufficientArgumentException e) {
+            fail(e.getMessage());
             e.printStackTrace();
         }
     }

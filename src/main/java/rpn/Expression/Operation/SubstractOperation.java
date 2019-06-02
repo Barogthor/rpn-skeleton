@@ -2,17 +2,17 @@ package rpn.Expression.Operation;
 
 import rpn.Exceptions.UnsufficientArgumentException;
 
-import java.util.ArrayDeque;
+import java.util.Stack;
 
 /**
  * @author
  * @since
  **/
-public class SubstractOperation extends AbstractOperation {
+public class SubstractOperation implements Operation {
     private final static String CLASSNAME = "rpn.Expression.Operation.SubstractOperation";
 
     @Override
-    public void operate(String expression, ArrayDeque<Double> result) throws UnsufficientArgumentException {
+    public void operate(Stack<Double> result, String expression) throws UnsufficientArgumentException {
         if(result.size()<2)
             throw new UnsufficientArgumentException();
         result.push( -result.pop() + result.pop() );
