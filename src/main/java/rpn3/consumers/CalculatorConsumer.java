@@ -82,7 +82,7 @@ public class CalculatorConsumer implements Consumer {
         map.put(Pattern.compile("\\*"), MultiplyOperationMessage::new);
         map.put(Pattern.compile("/"), DivideOperationMessage::new);
         map.put(Pattern.compile("ABS"), AbsoluteOperationMessage::new);
-//        map.put(Pattern.compile("SWAP"), MessageType.ADD);
+        map.put(Pattern.compile("SWAP"), SwapOperationMessage::new);
 //        map.put(Pattern.compile("DROP"), MessageType.ADD);
 //        map.put(Pattern.compile("TIME"), MessageType.ADD);
         return map;

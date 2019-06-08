@@ -146,12 +146,20 @@ public class Rpn3TestSynchrone {
 
     @Test
     public void should_evaluate_swapping_substract_operation() {
-//            assertThat(evaluate("2 9 SWAP -")).isEqualTo(7);
+        ClientConsumer client = new ClientConsumer(BUS);
+        BUS.subscribe(EndOfCalcul.MESSAGE_TYPE, client);
+        client.sendExpression("2 9 SWAP -");
+
+        assertThat(client.getResult().pop()).isEqualTo(7);
     }
 
     @Test
     public void should_evaluate_swapping_divide_operation() {
-//            assertThat(evaluate("2 8 SWAP /")).isEqualTo(4);
+        ClientConsumer client = new ClientConsumer(BUS);
+        BUS.subscribe(EndOfCalcul.MESSAGE_TYPE, client);
+        client.sendExpression("2 8 SWAP /");
+
+        assertThat(client.getResult().pop()).isEqualTo(4);
     }
 
     @Test
