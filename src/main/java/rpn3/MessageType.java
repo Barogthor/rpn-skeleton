@@ -11,6 +11,7 @@ public enum MessageType {
     ABS,
     SWAP,
     DROP,
+    TIMES,
     EOOP,
     EOC
 

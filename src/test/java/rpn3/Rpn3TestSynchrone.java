@@ -173,8 +173,10 @@ public class Rpn3TestSynchrone {
 
     @Test
     public void should_evaluate_time_operation_on_numbers() {
-//        assertThat(evaluate("1 3 TIME + +")).isEqualTo(3);
+        ClientConsumer client = new ClientConsumer(BUS);
+        BUS.subscribe(EndOfCalcul.MESSAGE_TYPE, client);
+        client.sendExpression("1 3 TIMES + +");
+
+        assertThat(client.getResult().pop()).isEqualTo(3);
     }
-
-
 }
