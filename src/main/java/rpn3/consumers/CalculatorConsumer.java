@@ -30,7 +30,7 @@ public class CalculatorConsumer implements Consumer {
     }
 
     @Override
-    public void receive(Message message) {
+    public synchronized void receive(Message message) {
 
         if(!calculMap.containsKey(message.id()))
             calculMap.put(message.id(), new Stack<>());
@@ -92,5 +92,10 @@ public class CalculatorConsumer implements Consumer {
 //        map.put(Pattern.compile("DROP"), MessageType.ADD);
 //        map.put(Pattern.compile("TIME"), MessageType.ADD);
         return map;
+    }
+
+    @Override
+    public void run() {
+
     }
 }

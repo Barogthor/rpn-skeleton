@@ -29,4 +29,9 @@ public class MultiplyOperationConsumer implements Consumer {
         operands.push(op2*op1);
         bus.publish(new EndOfOperation(operands, eMsg.id()));
     }
+
+    @Override
+    public void run() {
+
+    }
 }

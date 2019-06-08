@@ -27,4 +27,9 @@ public class TokenizerConsumer implements Consumer {
 
         bus.publish(new EndOfToken(eMsg.id()));
     }
+
+    @Override
+    public void run() {
+
+    }
 }

@@ -1,5 +1,7 @@
 package rpn3;
 
+import com.sun.org.apache.bcel.internal.generic.RET;
+import rpn3.consumers.ClientConsumer;
 import rpn3.consumers.Consumer;
 import rpn3.messages.Message;
 
@@ -20,8 +22,15 @@ public class InMemoryBus implements Bus {
         List<Consumer> consumers = consumersByType.get(message.messageType());
         if(consumers==null)
             return;
-        logger.info(message.toString());
-        consumers.forEach(c -> c.receive(message));
+//        logger.info(message.toString());
+
+        consumers.forEach(c -> {
+            if(message.messageType()==MessageType.EOC) {
+                if(((ClientConsumer) c).checkIdentityMessage(message)) c.receive(message);
+            }
+            else
+                c.receive(message);
+        });
     }
 
     @Override

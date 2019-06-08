@@ -21,7 +21,8 @@ public class Rpn3TestSynchrone {
 
         ClientConsumer client = new ClientConsumer(BUS);
         client.sendExpression("5");
-        assertThat(client.getResult().pop()).isEqualTo(5);
+        assertThat(client.getResult().pop())
+                .isEqualTo(5);
     }
 
     @Test
@@ -29,7 +30,8 @@ public class Rpn3TestSynchrone {
 
         ClientConsumer client = new ClientConsumer(BUS);
         client.sendExpression("17");
-        assertThat(client.getResult().pop()).isEqualTo(17);
+        assertThat(client.getResult().pop())
+                .isEqualTo(17);
     }
 
     @Test
@@ -37,7 +39,8 @@ public class Rpn3TestSynchrone {
 
         ClientConsumer client = new ClientConsumer(BUS);
         client.sendExpression("17 5 +");
-        assertThat(client.getResult().pop()).isEqualTo(12);
+        assertThat(client.getResult().pop())
+                .isEqualTo(12);
     }
 
     @Test
@@ -45,7 +48,8 @@ public class Rpn3TestSynchrone {
 
         ClientConsumer client = new ClientConsumer(BUS);
         client.sendExpression("2 3 5 + +");
-        assertThat(client.getResult().pop()).isEqualTo(10);
+        assertThat(client.getResult().pop())
+                .isEqualTo(10);
     }
 
     @Test
@@ -53,7 +57,8 @@ public class Rpn3TestSynchrone {
 
         ClientConsumer client = new ClientConsumer(BUS);
         client.sendExpression("2 3 5 + + 9 -");
-        assertThat(client.getResult().pop()).isEqualTo(1);
+        assertThat(client.getResult().pop())
+                .isEqualTo(1);
     }
 
     @Test

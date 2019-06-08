@@ -28,4 +28,9 @@ public class AddOperationConsumer implements Consumer {
         operands.push(leftOperand+rightOperand);
         bus.publish(new EndOfOperation(operands, eMsg.id()));
     }
+
+    @Override
+    public void run() {
+
+    }
 }
