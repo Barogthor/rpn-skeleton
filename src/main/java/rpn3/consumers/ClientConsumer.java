@@ -35,7 +35,12 @@ public class ClientConsumer implements Consumer {
         bus.publish(new ExpressionMessage(expression,clientId));
     }
 
+
     public Stack<Double> getResult() {
         return result;
+    }
+
+    public boolean checkIdentityMessage(Message message) {
+        return message.id().equals(clientId);
     }
 }

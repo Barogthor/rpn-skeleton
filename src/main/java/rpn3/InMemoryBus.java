@@ -1,9 +1,9 @@
 package rpn3;
 
+import rpn3.consumers.ClientConsumer;
 import rpn3.consumers.Consumer;
 import rpn3.messages.Message;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +21,12 @@ public class InMemoryBus implements Bus {
         if(consumers==null)
             return;
         logger.info(message.toString());
-        consumers.forEach(c -> c.receive(message));
+        consumers.forEach(c -> {
+            if (message.messageType() == MessageType.EOC) {
+                if (((ClientConsumer) c).checkIdentityMessage(message)) c.receive(message);
+            } else
+                c.receive(message);
+        });
     }
 
     @Override

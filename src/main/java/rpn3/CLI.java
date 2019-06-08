@@ -2,6 +2,7 @@ package rpn3;
 
 import rpn3.consumers.CalculatorConsumer;
 import rpn3.consumers.ClientConsumer;
+import rpn3.consumers.Consumer;
 import rpn3.consumers.TokenizerConsumer;
 import rpn3.consumers.operations.AddOperationConsumer;
 import rpn3.consumers.operations.DivideOperationConsumer;
@@ -32,16 +33,23 @@ public class CLI {
         bus.subscribe(SubOperationMessage.MESSAGE_TYPE, new SubOperationConsumer(bus));
         bus.subscribe(MultiplyOperationMessage.MESSAGE_TYPE, new MultiplyOperationConsumer(bus));
         bus.subscribe(DivideOperationMessage.MESSAGE_TYPE, new DivideOperationConsumer(bus));
-        bus.subscribe(EndOfCalcul.MESSAGE_TYPE, new ClientConsumer(bus));
+
         return bus;
+    }
+
+    private static void subscribeClient(Consumer consumer) {
+        BUS.subscribe(EndOfCalcul.MESSAGE_TYPE, consumer);
     }
 
     public static void main(String... args) {
 
 
         ClientConsumer client1 = new ClientConsumer(BUS);
+        subscribeClient(client1);
         ClientConsumer client2 = new ClientConsumer(BUS);
+        subscribeClient(client2);
         ClientConsumer client3 = new ClientConsumer(BUS);
+        subscribeClient(client3);
         client1.sendExpression("1 2 + 3 -");
         client2.sendExpression("1 2 + 4 - 2 *");
         client3.sendExpression("1 2 + 4 - 2 * 4 /");
