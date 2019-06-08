@@ -4,10 +4,7 @@ import rpn3.consumers.CalculatorConsumer;
 import rpn3.consumers.ClientConsumer;
 import rpn3.consumers.Consumer;
 import rpn3.consumers.TokenizerConsumer;
-import rpn3.consumers.operations.AddOperationConsumer;
-import rpn3.consumers.operations.DivideOperationConsumer;
-import rpn3.consumers.operations.MultiplyOperationConsumer;
-import rpn3.consumers.operations.SubOperationConsumer;
+import rpn3.consumers.operations.*;
 import rpn3.messages.EndOfCalcul;
 import rpn3.messages.EndOfToken;
 import rpn3.messages.ExpressionMessage;
@@ -33,6 +30,7 @@ public class CLI {
         bus.subscribe(SubOperationMessage.MESSAGE_TYPE, new SubOperationConsumer(bus));
         bus.subscribe(MultiplyOperationMessage.MESSAGE_TYPE, new MultiplyOperationConsumer(bus));
         bus.subscribe(DivideOperationMessage.MESSAGE_TYPE, new DivideOperationConsumer(bus));
+        bus.subscribe(AbsoluteOperationMessage.MESSAGE_TYPE, new AbsoluteOperationConsumer(bus));
 
         return bus;
     }

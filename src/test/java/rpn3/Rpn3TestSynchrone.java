@@ -120,21 +120,28 @@ public class Rpn3TestSynchrone {
 
     @Test
     public void should_evaluate_positive_number_as_absolute() {
-//        ClientConsumer client = new ClientConsumer(BUS);
-//        BUS.subscribe(EndOfCalcul.MESSAGE_TYPE, client);
-//        client.sendExpression("17 ABS");
-//
-//        assertThat(client.getResult().pop()).isEqualTo(17);
+        ClientConsumer client = new ClientConsumer(BUS);
+        BUS.subscribe(EndOfCalcul.MESSAGE_TYPE, client);
+        client.sendExpression("17 ABS");
+
+        assertThat(client.getResult().pop()).isEqualTo(17);
     }
 
     @Test
     public void should_evaluate_negative_number_as_absolute() {
-//            assertThat(evaluate("-17 ABS")).isEqualTo(17);
-    }
+        ClientConsumer client = new ClientConsumer(BUS);
+        BUS.subscribe(EndOfCalcul.MESSAGE_TYPE, client);
+        client.sendExpression("-17 ABS");
+
+        assertThat(client.getResult().pop()).isEqualTo(17);    }
 
     @Test
     public void should_evaluate_complex_negative_result_as_absolute() {
-//            assertThat(evaluate("2 3 5 + + 19 - ABS")).isEqualTo(9);
+        ClientConsumer client = new ClientConsumer(BUS);
+        BUS.subscribe(EndOfCalcul.MESSAGE_TYPE, client);
+        client.sendExpression("2 3 5 + + 19 - ABS");
+
+        assertThat(client.getResult().pop()).isEqualTo(9);
     }
 
     @Test

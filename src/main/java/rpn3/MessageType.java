@@ -8,6 +8,7 @@ public enum MessageType {
     SUB,
     MULTIPLY,
     DIVIDE,
+    ABS,
     EOOP,
     EOC
 
