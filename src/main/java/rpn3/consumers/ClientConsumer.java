@@ -5,6 +5,7 @@ import rpn3.messages.EndOfCalcul;
 import rpn3.messages.ExpressionMessage;
 import rpn3.messages.Message;
 
+import java.text.MessageFormat;
 import java.util.Stack;
 import java.util.UUID;
 
@@ -25,9 +26,9 @@ public class ClientConsumer implements Consumer {
     @Override
     public void receive(Message message) {
         EndOfCalcul eMsg = (EndOfCalcul) message;
-        System.out.println(eMsg.getResult());
+        System.out.println(MessageFormat.format("Result is {0} for client ''{1}''",
+                eMsg.getResult(), clientId));
         result = eMsg.getResult();
-        System.out.println(result);
     }
 
     public void sendExpression(String expression){

@@ -27,4 +27,12 @@ public class TokenMessage implements Message {
     public String id() {
         return expressionId;
     }
+
+    @Override
+    public String toString() {
+        return "TokenMessage{" +
+                "token='" + token + '\'' +
+                ", expressionId='" + expressionId + '\'' +
+                '}';
+    }
 }

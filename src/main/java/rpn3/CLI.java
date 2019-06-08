@@ -13,8 +13,6 @@ import rpn3.messages.ExpressionMessage;
 import rpn3.messages.TokenMessage;
 import rpn3.messages.operations.*;
 
-import java.util.UUID;
-
 public class CLI {
 
     public static final Bus BUS = initializeBus();
@@ -45,7 +43,7 @@ public class CLI {
         ClientConsumer client2 = new ClientConsumer(BUS);
         ClientConsumer client3 = new ClientConsumer(BUS);
         client1.sendExpression("1 2 + 3 -");
-        client2.sendExpression("1 2 + 3 - 2 *");
+        client2.sendExpression("1 2 + 4 - 2 *");
         client3.sendExpression("1 2 + 4 - 2 * 4 /");
 
     }

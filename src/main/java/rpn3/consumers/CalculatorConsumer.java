@@ -1,7 +1,6 @@
 package rpn3.consumers;
 
 import rpn3.Bus;
-import rpn3.MessageType;
 import rpn3.messages.EndOfCalcul;
 import rpn3.messages.EndOfToken;
 import rpn3.messages.Message;
@@ -39,33 +38,28 @@ public class CalculatorConsumer implements Consumer {
 
         if(message instanceof EndOfToken){
             receiveEndOfToken((EndOfToken) message);
-            return;
         }
         else if (message instanceof EndOfOperation){
             receiveEndOfOperation((EndOfOperation) message);
-            return;
-        }
+        } else if (message instanceof TokenMessage)
+            receiveToken((TokenMessage) message);
 
-        TokenMessage eMsg = (TokenMessage) message;
-        if(NUMBER_REGEX.matcher(eMsg.getToken()).matches())
-            calculMap.get(eMsg.id()).push(Double.parseDouble(eMsg.getToken()));
-        else{
-            bus.publish( getMessageOperator(eMsg));
-        }
     }
 
-    private void receiveToken(TokenMessage message){
+    private void receiveToken(TokenMessage message) {
 
+        if (NUMBER_REGEX.matcher(message.getToken()).matches())
+            calculMap.get(message.id()).push(Double.parseDouble(message.getToken()));
+        else{
+            bus.publish(getMessageOperator(message));
+        }
     }
 
     private void receiveEndOfOperation(EndOfOperation message){
-//        System.out.println(message.getStack().toString());
-//        System.out.println(calculMap.get(message.id()).toString());
         calculMap.put(message.id(),message.getStack());
     }
 
     private void receiveEndOfToken(EndOfToken message){
-//        System.out.println(calculMap.get(message.id()).toString());
         bus.publish(new EndOfCalcul(calculMap.get(message.id()),message.id()));
         calculMap.remove(message.id());
     }
