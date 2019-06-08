@@ -10,6 +10,7 @@ public enum MessageType {
     DIVIDE,
     ABS,
     SWAP,
+    DROP,
     EOOP,
     EOC
 

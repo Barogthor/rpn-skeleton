@@ -4,7 +4,6 @@ import rpn3.Bus;
 import rpn3.consumers.Consumer;
 import rpn3.messages.Message;
 import rpn3.messages.operations.AbsoluteOperationMessage;
-import rpn3.messages.operations.AddOperationMessage;
 import rpn3.messages.operations.EndOfOperation;
 
 import java.util.Stack;

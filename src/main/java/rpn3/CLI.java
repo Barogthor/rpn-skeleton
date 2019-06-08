@@ -32,6 +32,7 @@ public class CLI {
         bus.subscribe(DivideOperationMessage.MESSAGE_TYPE, new DivideOperationConsumer(bus));
         bus.subscribe(AbsoluteOperationMessage.MESSAGE_TYPE, new AbsoluteOperationConsumer(bus));
         bus.subscribe(SwapOperationMessage.MESSAGE_TYPE, new SwapOperationConsumer(bus));
+        bus.subscribe(DropOperationMessage.MESSAGE_TYPE, new DropOperationConsumer(bus));
 
         return bus;
     }

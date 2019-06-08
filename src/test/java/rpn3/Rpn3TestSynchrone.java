@@ -164,7 +164,11 @@ public class Rpn3TestSynchrone {
 
     @Test
     public void should_evaluate_drop_operation() {
-//            assertThat(evaluate("-2 3 4 DROP +")).isEqualTo(1);
+        ClientConsumer client = new ClientConsumer(BUS);
+        BUS.subscribe(EndOfCalcul.MESSAGE_TYPE, client);
+        client.sendExpression("-2 3 4 DROP +");
+
+        assertThat(client.getResult().pop()).isEqualTo(1);
     }
 
     @Test
